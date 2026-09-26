@@ -1,17 +1,25 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
+import { IWorkout } from "../types/workout.type";
 
-export const PlanContext = createContext({
+interface IPlanContext {
+  plan: IWorkout[];
+  setPlan: (plan: IWorkout[]) => void;
+  saved: IWorkout[];
+  setSaved: (saved: IWorkout[]) => void;
+}
+
+export const PlanContext = createContext<IPlanContext>({
   plan: [],
   setPlan: () => {},
   saved: [],
   setSaved: () => {},
 });
 
-const PlanProvider = ({ children }) => {
-  const [plan, setPlan] = useState([]);
-  const [saved, setSaved] = useState([]);
+const PlanProvider = ({ children }: { children: ReactNode }) => {
+  const [plan, setPlan] = useState<IWorkout[]>([]);
+  const [saved, setSaved] = useState<IWorkout[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {

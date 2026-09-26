@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import PlanProvider from "../context/PlanContext";
@@ -14,12 +15,12 @@ const oswald = Oswald({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "FitLog — Workout Library",
   description: "Browse gym workouts, build today's plan, and track weekly calories with FitLog.",
 };
 
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang="en"

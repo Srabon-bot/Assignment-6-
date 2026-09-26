@@ -7,17 +7,18 @@ const Navbar = () => {
       <nav className="navbar mx-auto max-w-6xl px-4">
         <div className="navbar-start gap-2">
           <div className="dropdown lg:hidden">
-            <button tabIndex={0} className="btn btn-ghost btn-square" aria-label="Open menu">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-square" aria-label="Open menu">
               <Menu className="h-5 w-5" />
-            </button>
+            </div>
             <ul
               tabIndex={0}
+              role="menu"
               className="menu dropdown-content menu-sm z-50 mt-3 w-52 rounded-2xl border border-base-300 bg-base-200 p-2"
             >
-              <li>
+              <li role="menuitem">
                 <Link href="/">Workouts</Link>
               </li>
-              <li>
+              <li role="menuitem">
                 <Link href="/my-plan">My Plan</Link>
               </li>
             </ul>
@@ -30,11 +31,11 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-1 px-1">
-            <li>
+          <ul className="menu menu-horizontal gap-1 px-1" role="menu">
+            <li role="menuitem">
               <Link href="/">Workouts</Link>
             </li>
-            <li>
+            <li role="menuitem">
               <Link href="/my-plan">My Plan</Link>
             </li>
           </ul>
