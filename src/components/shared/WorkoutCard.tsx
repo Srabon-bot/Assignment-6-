@@ -22,27 +22,30 @@ const WorkoutCard = ({ workout }: IWorkoutCardProps) => {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </figure>
-      <div className="card-body gap-3 p-5">
-        <div className="flex flex-wrap gap-2">
+      <div className="card-body gap-1.5 p-6">
+        <div className="flex flex-wrap gap-2 mb-1">
           {workout.muscleGroups.map((group) => (
-            <span key={group} className="badge badge-primary badge-sm">
+            <span key={group} className="badge badge-primary text-black font-bold uppercase text-[11px] py-3 px-3">
               {group}
             </span>
           ))}
         </div>
-        <h2 className="card-title font-heading text-xl normal-case tracking-tight">
+        <h2 className="font-heading text-2xl font-bold uppercase tracking-wide text-base-content mt-1">
           {workout.name}
         </h2>
-        <p className="text-sm text-base-content/70">{workout.equipment}</p>
-        <div className="flex flex-wrap items-center gap-4 text-sm">
-          <span className="inline-flex items-center gap-1">
-            <Clock className="h-4 w-4 text-primary" /> {workout.duration} min
+        <p className="text-base-content/60 mb-2">{workout.equipment}</p>
+        
+        <hr className="my-1 border-base-300" />
+        
+        <div className="flex flex-wrap items-center gap-5 pt-1 text-sm text-base-content/60">
+          <span className="inline-flex items-center gap-1.5">
+            <Clock className="h-4 w-4 opacity-70" /> {workout.duration} min
           </span>
-          <span className="inline-flex items-center gap-1">
-            <Flame className="h-4 w-4 text-primary" /> {workout.caloriesBurned} kcal
+          <span className="inline-flex items-center gap-1.5">
+            <Flame className="h-4 w-4 opacity-70" /> {workout.caloriesBurned} kcal
           </span>
-          <span className="inline-flex items-center gap-1">
-            <Star className="h-4 w-4 text-primary" /> {workout.rating}
+          <span className="inline-flex items-center gap-1.5">
+            <Star className="h-4 w-4 opacity-70" /> {workout.rating}
           </span>
         </div>
       </div>

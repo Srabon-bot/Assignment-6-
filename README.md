@@ -17,13 +17,11 @@ A workout library app where you can browse exercises, add them to your daily pla
 
 ## Features
 
-- Browse 12 different exercises from the workout library with details like duration, calories, and difficulty
-- View detailed breakdown of each exercise including instructions, equipment needed, and muscle groups
-- Add exercises to your daily plan (max 5 at a time) or save them for later
-- Track your session stats like total exercises, minutes, and calories burned
-- Sort your plan by duration, calories, or rating
-- Data stays saved even after refreshing the page using localStorage
-- Fully responsive across mobile, tablet, and desktop
+1. **Workout Library**: Browse a curated library of 12 exercises covering every major muscle group, featuring detailed breakdowns of equipment, difficulty, and step-by-step instructions.
+2. **Daily Plan Management**: Build your session by adding up to 5 exercises to your "Today's Plan", or save them for later if you want to swap them in tomorrow.
+3. **Live Session Metrics**: Automatically track your total exercises, combined workout duration, and total calories burned in real-time as you build your plan.
+4. **Smart Sorting & Filtering**: Instantly search the library by exercise name or muscle group, and sort your planned workouts by duration, calories, or rating.
+5. **Progress Tracking**: Mark exercises as "Done" as you complete your workout, with all your plan data automatically saving so you never lose your progress even if you close the tab.
 
 ## How to Run
 

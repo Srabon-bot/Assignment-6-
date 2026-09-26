@@ -18,10 +18,10 @@ const Library = async () => {
   const workouts = await fetchWorkouts();
 
   return (
-    <section id="library" className="space-y-6">
+    <section id="library" className="space-y-10">
       <div>
-        <h2 className="text-3xl font-heading font-bold uppercase">The Library</h2>
-        <p className="mt-2 text-base-content/70">
+        <h2 className="text-5xl font-heading font-bold uppercase tracking-tight text-white">The Library</h2>
+        <p className="mt-2 text-base text-base-content/60">
           Twelve lifts covering every major muscle group.
         </p>
       </div>

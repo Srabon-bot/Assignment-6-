@@ -3,7 +3,7 @@ import Library from "../components/homepage/Library";
 
 const Home = () => {
   return (
-    <div className="space-y-12">
+    <div className="flex flex-col gap-24">
       <Hero />
       <Library />
     </div>

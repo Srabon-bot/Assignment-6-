@@ -9,14 +9,14 @@
 
 /* Override DaisyUI dark theme variables to match the FitLog design */
 [data-theme="dark"] {
-  --color-primary: #c4f000;
+  --color-primary: #c2f800;
   --color-primary-content: #000000;
-  --color-accent: #c4f000;
+  --color-accent: #c2f800;
   --color-accent-content: #000000;
   
-  --color-base-100: #0a0a0a;
-  --color-base-200: #141414;
-  --color-base-300: #262626;
+  --color-base-100: #0b0c0f;
+  --color-base-200: #14161c;
+  --color-base-300: #1e212a;
   --color-base-content: #ededed;
 }
 
