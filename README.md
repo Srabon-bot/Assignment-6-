@@ -4,7 +4,7 @@ A workout library app where you can browse exercises, add them to your daily pla
 
 ## Live Site
 
-[Click here to view](https://your-deployment-url.vercel.app)
+[Click here to view](https://assignment-6-fit-log-weld.vercel.app/)
 
 ## Tech Stack
 

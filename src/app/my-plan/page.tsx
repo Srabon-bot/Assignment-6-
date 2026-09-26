@@ -12,6 +12,7 @@ const MyPlan = () => {
   const { plan, setPlan, saved, setSaved, isLoaded } = useContext(PlanContext);
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">("duration");
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (!isLoaded) {
     return (
@@ -52,7 +53,6 @@ const MyPlan = () => {
   const activeList = activeTab === "plan" ? plan : saved;
   const sortedList = getSortedList(activeList);
   
-  const [searchQuery, setSearchQuery] = useState("");
   const filteredList = sortedList.filter((workout) => {
     const query = searchQuery.toLowerCase();
     const matchName = workout.name.toLowerCase().includes(query);
