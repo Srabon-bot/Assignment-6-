@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { useContext } from "react";
-import { Dumbbell, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { PlanContext } from "../../context/PlanContext";
 
 const Navbar = () => {
@@ -46,9 +47,9 @@ const Navbar = () => {
             </ul>
           </div>
           
-          <Link href="/" className="flex items-center gap-2 font-heading text-xl tracking-wide">
-            <Dumbbell className="h-6 w-6 text-primary" />
-            FitLog
+          <Link href="/" className="flex items-center gap-3 font-heading text-xl font-bold tracking-wide uppercase">
+            <Image src="/logo.png" alt="FitLog Logo" width={24} height={24} className="h-6 w-6 object-contain" />
+            FITLOG
           </Link>
         </div>
 
