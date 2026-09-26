@@ -13,6 +13,10 @@
   --color-base-200: #141414;
   --color-base-300: #262626;
   --color-base-content: #ededed;
+
+  /* Fonts mapped from next/font variables */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-oswald), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
