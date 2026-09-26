@@ -1,5 +1,6 @@
 import { Inter, Oswald } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import PlanProvider from "../context/PlanContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,8 +26,10 @@ const RootLayout = ({ children }) => {
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-base-100 font-sans">
-        {children}
-        <Toaster position="top-right" />
+        <PlanProvider>
+          {children}
+          <Toaster position="top-right" />
+        </PlanProvider>
       </body>
     </html>
   );
