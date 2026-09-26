@@ -1,7 +1,9 @@
+import Hero from "../components/homepage/Hero";
+
 const Home = () => {
   return (
-    <div>
-      <h1 className="text-4xl font-bold">FitLog Blank Slate</h1>
+    <div className="space-y-12">
+      <Hero />
     </div>
   );
 };
