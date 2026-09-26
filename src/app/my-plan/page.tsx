@@ -52,7 +52,7 @@ const MyPlan = () => {
 
   const activeList = activeTab === "plan" ? plan : saved;
   const sortedList = getSortedList(activeList);
-  
+
   const filteredList = sortedList.filter((workout) => {
     const query = searchQuery.toLowerCase();
     const matchName = workout.name.toLowerCase().includes(query);
@@ -71,81 +71,98 @@ const MyPlan = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="flex items-center gap-4 rounded-2xl border border-base-300 bg-base-200 p-5">
-          <Dumbbell className="h-8 w-8 text-primary" />
-          <div>
-            <p className="text-2xl font-bold">{totalExercises}</p>
-            <p className="text-sm text-base-content/70">Exercises</p>
-          </div>
+      <div className="grid grid-cols-3 gap-4 sm:grid-cols-3 rounded-2xl border border-base-300 bg-base-200 py-16 px-8">
+
+
+        <div className="border-r border-base-300">
+          <p className="text-sm text-base-content/70">Exercises</p>
+          <p className="text-[38px] font-bold text-primary">{totalExercises}</p>
         </div>
-        <div className="flex items-center gap-4 rounded-2xl border border-base-300 bg-base-200 p-5">
-          <Clock className="h-8 w-8 text-primary" />
-          <div>
-            <p className="text-2xl font-bold">{totalMinutes}</p>
-            <p className="text-sm text-base-content/70">Minutes</p>
-          </div>
+
+
+
+        <div className="border-r border-base-300">
+          <p className="text-sm text-base-content/70">Minutes</p>
+          <p className="text-[38px] font-bold">{totalMinutes}</p>
         </div>
-        <div className="flex items-center gap-4 rounded-2xl border border-base-300 bg-base-200 p-5">
-          <Flame className="h-8 w-8 text-primary" />
-          <div>
-            <p className="text-2xl font-bold">{totalCalories}</p>
-            <p className="text-sm text-base-content/70">Calories</p>
-          </div>
+
+
+        <div>
+          <p className="text-sm text-base-content/70">Calories</p>
+          <p className="text-[38px] font-bold">{totalCalories}</p>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div role="tablist" className="tabs tabs-bordered">
-          <button
-            role="tab"
-            className={`tab ${activeTab === "plan" ? "tab-active font-semibold text-primary" : ""}`}
-            onClick={() => setActiveTab("plan")}
-          >
-            Today&apos;s Plan ({plan.length})
-          </button>
-          <button
-            role="tab"
-            className={`tab ${activeTab === "saved" ? "tab-active font-semibold text-primary" : ""}`}
-            onClick={() => setActiveTab("saved")}
-          >
-            Saved ({saved.length})
-          </button>
-        </div>
-
-        <div className="flex gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-4 ">
+        <div className="tabs tabs-box rounded-full border border-base-300 bg-base-200 p-1">
           <input
-            type="text"
-            placeholder="Search list..."
-            className="input input-bordered input-sm w-full max-w-xs bg-base-200"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            type="radio"
+            name="my_plan_tabs"
+            className="tab rounded-full font-medium text-base-content/60 checked:bg-[#20252e] checked:text-base-content [--tab-bg:transparent] [--tab-border-color:transparent]"
+            aria-label={`Today's Plan`}
+            checked={activeTab === "plan"}
+            onChange={() => setActiveTab("plan")}
           />
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-sm gap-2">
-              Sort By: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
-              <ChevronDown className="h-4 w-4" />
+          <input
+            type="radio"
+            name="my_plan_tabs"
+            className="tab rounded-full font-medium text-base-content/60 checked:bg-[#20252e] checked:text-base-content [--tab-bg:transparent] [--tab-border-color:transparent]"
+            aria-label={`Saved`}
+            checked={activeTab === "saved"}
+            onChange={() => setActiveTab("saved")}
+          />
+        </div>
+
+        <div className="flex gap-2 ">
+          <div className="flex gap-2 items-center">
+            <input
+              type="text"
+              placeholder="Search list..."
+              className="input input-bordered input-sm w-full max-w-xs bg-base-200"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-base-content/60 whitespace-nowrap">
+                Sort By
+              </span>
+
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-sm gap-2 rounded-full border border-base-300 bg-base-200 px-4 font-normal normal-case"
+                >
+                  {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
+                  <ChevronDown className="h-4 w-4 opacity-60" />
+                </div>
+                <ul
+                  tabIndex={0}
+                  role="menu"
+                  className="menu dropdown-content z-50 mt-2 w-44 rounded-xl border border-base-300 bg-base-200 p-2 shadow-lg"
+                >
+                  <li role="menuitem">
+                    <button onClick={() => setSortBy("duration")} className={sortBy === "duration" ? "active" : ""}>
+                      Duration
+                    </button>
+                  </li>
+                  <li role="menuitem">
+                    <button onClick={() => setSortBy("calories")} className={sortBy === "calories" ? "active" : ""}>
+                      Calories
+                    </button>
+                  </li>
+                  <li role="menuitem">
+                    <button onClick={() => setSortBy("rating")} className={sortBy === "rating" ? "active" : ""}>
+                      Rating
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <ul tabIndex={0} role="menu" className="menu dropdown-content z-50 mt-2 w-44 rounded-xl border border-base-300 bg-base-200 p-2 shadow-lg">
-              <li role="menuitem">
-                <button onClick={() => setSortBy("duration")} className={sortBy === "duration" ? "active" : ""}>
-                  Duration
-                </button>
-              </li>
-              <li role="menuitem">
-                <button onClick={() => setSortBy("calories")} className={sortBy === "calories" ? "active" : ""}>
-                  Calories
-                </button>
-              </li>
-              <li role="menuitem">
-                <button onClick={() => setSortBy("rating")} className={sortBy === "rating" ? "active" : ""}>
-                  Rating
-                </button>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
+
 
       {filteredList.length === 0 ? (
         <div className="flex flex-col items-center gap-4 rounded-2xl border border-base-300 bg-base-200 py-16 text-center">
