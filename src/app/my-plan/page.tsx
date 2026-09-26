@@ -9,9 +9,18 @@ import { PlanContext } from "../../context/PlanContext";
 import { IWorkout } from "../../types/workout.type";
 
 const MyPlan = () => {
-  const { plan, setPlan, saved, setSaved } = useContext(PlanContext);
+  const { plan, setPlan, saved, setSaved, isLoaded } = useContext(PlanContext);
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">("duration");
+
+  if (!isLoaded) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+        <span className="ml-3 text-lg">Loading workouts…</span>
+      </div>
+    );
+  }
 
   const totalExercises = plan.length;
   const totalMinutes = plan.reduce((sum, w) => sum + w.duration, 0);

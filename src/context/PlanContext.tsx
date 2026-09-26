@@ -8,6 +8,7 @@ interface IPlanContext {
   setPlan: (plan: IWorkout[]) => void;
   saved: IWorkout[];
   setSaved: (saved: IWorkout[]) => void;
+  isLoaded: boolean;
 }
 
 export const PlanContext = createContext<IPlanContext>({
@@ -15,6 +16,7 @@ export const PlanContext = createContext<IPlanContext>({
   setPlan: () => {},
   saved: [],
   setSaved: () => {},
+  isLoaded: false,
 });
 
 const PlanProvider = ({ children }: { children: ReactNode }) => {
@@ -49,6 +51,7 @@ const PlanProvider = ({ children }: { children: ReactNode }) => {
     setPlan,
     saved,
     setSaved,
+    isLoaded,
   };
 
   return (
