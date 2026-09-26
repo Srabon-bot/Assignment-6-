@@ -9,7 +9,7 @@ const Footer = () => {
           <Image src="/logo.png" alt="FitLog Logo" width={24} height={24} className="h-6 w-6 object-contain" />
           FITLOG
         </Link>
-        <p className="text-sm text-base-content/60">
+        <p className="text-[12px] text-base-content/60">
           © 2026 FitLog — Workout Library. Train hard, log honest.
         </p>
       </div>
