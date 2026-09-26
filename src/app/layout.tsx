@@ -3,6 +3,7 @@ import { Inter, Oswald } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import PlanProvider from "../context/PlanContext";
 import Navbar from "../components/shared/Navbar";
+import Footer from "../components/shared/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,7 +31,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <body className="flex min-h-full flex-col bg-base-100 font-sans">
         <PlanProvider>
           <Navbar />
-          {children}
+          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+            {children}
+          </main>
+          <Footer />
           <Toaster position="top-right" />
         </PlanProvider>
       </body>
