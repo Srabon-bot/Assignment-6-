@@ -25,7 +25,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang="en"
-      data-theme="fitlog"
+      data-theme="dark"
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-base-100 font-sans">

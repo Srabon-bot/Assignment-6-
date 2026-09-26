@@ -1,22 +1,23 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* Custom fitlog theme for DaisyUI v5 */
 @theme {
+  /* Fonts mapped from next/font variables */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-oswald), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Override DaisyUI dark theme variables to match the FitLog design */
+[data-theme="dark"] {
   --color-primary: #c4f000;
   --color-primary-content: #000000;
   --color-accent: #c4f000;
   --color-accent-content: #000000;
   
-  /* Dark base colors */
   --color-base-100: #0a0a0a;
   --color-base-200: #141414;
   --color-base-300: #262626;
   --color-base-content: #ededed;
-
-  /* Fonts mapped from next/font variables */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-oswald), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
