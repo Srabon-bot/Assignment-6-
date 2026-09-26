@@ -1,7 +1,9 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { Dumbbell, Clock, Flame, X, CheckCircle, ArrowDownAZ, ArrowUpZA } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Dumbbell, Clock, Flame, Star, X, CheckCircle, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import { PlanContext } from "../../context/PlanContext";
 import { IWorkout } from "../../types/workout.type";
@@ -9,7 +11,7 @@ import { IWorkout } from "../../types/workout.type";
 const MyPlan = () => {
   const { plan, setPlan, saved, setSaved } = useContext(PlanContext);
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">("duration");
 
   const totalExercises = plan.length;
   const totalMinutes = plan.reduce((sum, w) => sum + w.duration, 0);
@@ -32,8 +34,9 @@ const MyPlan = () => {
 
   const getSortedList = (list: IWorkout[]) => {
     return [...list].sort((a, b) => {
-      if (sortOrder === "asc") return a.name.localeCompare(b.name);
-      return b.name.localeCompare(a.name);
+      if (sortBy === "duration") return a.duration - b.duration;
+      if (sortBy === "calories") return a.caloriesBurned - b.caloriesBurned;
+      return b.rating - a.rating;
     });
   };
 
@@ -45,7 +48,7 @@ const MyPlan = () => {
       <div>
         <h1 className="text-4xl font-heading font-bold uppercase">My Plan</h1>
         <p className="mt-2 text-base-content/70">
-          Track today&apos;s workout plan and saved exercises.
+          Cap of five lifts for today. Finish them, then load more.
         </p>
       </div>
 
@@ -91,43 +94,80 @@ const MyPlan = () => {
           </button>
         </div>
 
-        <button
-          className="btn btn-ghost btn-sm gap-2"
-          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-        >
-          {sortOrder === "asc" ? (
-            <><ArrowDownAZ className="h-4 w-4" /> A–Z</>
-          ) : (
-            <><ArrowUpZA className="h-4 w-4" /> Z–A</>
-          )}
-        </button>
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-sm gap-2">
+            Sort By: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
+            <ChevronDown className="h-4 w-4" />
+          </div>
+          <ul tabIndex={0} role="menu" className="menu dropdown-content z-50 mt-2 w-44 rounded-xl border border-base-300 bg-base-200 p-2 shadow-lg">
+            <li role="menuitem">
+              <button onClick={() => setSortBy("duration")} className={sortBy === "duration" ? "active" : ""}>
+                Duration
+              </button>
+            </li>
+            <li role="menuitem">
+              <button onClick={() => setSortBy("calories")} className={sortBy === "calories" ? "active" : ""}>
+                Calories
+              </button>
+            </li>
+            <li role="menuitem">
+              <button onClick={() => setSortBy("rating")} className={sortBy === "rating" ? "active" : ""}>
+                Rating
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
 
       {sortedList.length === 0 ? (
         <div className="flex flex-col items-center gap-4 rounded-2xl border border-base-300 bg-base-200 py-16 text-center">
           <Dumbbell className="h-12 w-12 text-base-content/30" />
-          <p className="text-lg text-base-content/50">
-            {activeTab === "plan"
-              ? "No exercises in today's plan yet."
-              : "No saved exercises yet."}
+          <h3 className="font-heading text-xl uppercase">Nothing here yet</h3>
+          <p className="max-w-sm text-base-content/50">
+            Browse the library and add a lift to get today moving.
           </p>
+          <Link href="/" className="btn btn-accent rounded-2xl text-black">
+            Go to workouts
+          </Link>
         </div>
       ) : (
         <div className="space-y-4">
           {sortedList.map((workout) => (
             <div
               key={workout.id}
-              className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-base-300 bg-base-200 p-4"
+              className="flex flex-col gap-4 rounded-2xl border border-base-300 bg-base-200 p-4 sm:flex-row sm:items-center"
             >
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl">
+                <Image
+                  src={workout.image}
+                  alt={workout.name}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </div>
               <div className="flex-1">
-                <h3 className="font-heading text-lg">{workout.name}</h3>
+                <h3 className="font-heading text-lg uppercase">{workout.name}</h3>
+                <p className="text-sm text-base-content/60">{workout.equipment}</p>
                 <div className="mt-1 flex flex-wrap gap-3 text-sm text-base-content/70">
-                  <span>{workout.duration} min</span>
-                  <span>{workout.caloriesBurned} kcal</span>
-                  <span>{workout.difficulty}</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="h-3.5 w-3.5 text-primary" /> {workout.duration} min
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Flame className="h-3.5 w-3.5 text-primary" /> {workout.caloriesBurned} kcal
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Star className="h-3.5 w-3.5 text-primary" /> {workout.rating}
+                  </span>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/exercise/${workout.id}`}
+                  className="btn btn-outline btn-sm rounded-xl"
+                >
+                  View Details
+                </Link>
                 {activeTab === "plan" && (
                   <button
                     className="btn btn-accent btn-sm rounded-xl text-black"

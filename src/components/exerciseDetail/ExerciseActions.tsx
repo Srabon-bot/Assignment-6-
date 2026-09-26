@@ -15,10 +15,15 @@ const ExerciseActions = ({ workout }: IExerciseActionsProps) => {
 
   const isInPlan = plan.some((item) => item.id === workout.id);
   const isSaved = saved.some((item) => item.id === workout.id);
+  const isPlanFull = plan.length >= 5;
 
   const handleAddToPlan = () => {
     if (isInPlan) {
       toast.error("Already in today's plan!");
+      return;
+    }
+    if (isPlanFull) {
+      toast.error("Plan is full! Finish your current lifts first.");
       return;
     }
     setPlan([...plan, workout]);
@@ -38,11 +43,11 @@ const ExerciseActions = ({ workout }: IExerciseActionsProps) => {
     <div className="mt-6 flex flex-col gap-3 sm:flex-row">
       <button
         onClick={handleAddToPlan}
-        disabled={isInPlan}
+        disabled={isInPlan || isPlanFull}
         className="btn btn-accent rounded-2xl text-black"
       >
         <CalendarPlus className="h-5 w-5" />
-        {isInPlan ? "Already in Plan" : "Add to today's plan"}
+        {isInPlan ? "Already in Plan" : isPlanFull ? "Plan Full (5/5)" : "Add to today's plan"}
       </button>
       <button
         onClick={handleSave}
