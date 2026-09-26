@@ -1,4 +1,5 @@
 import { IWorkout } from "../../types/workout.type";
+import WorkoutCard from "../shared/WorkoutCard";
 
 const fetchWorkouts = async (): Promise<IWorkout[]> => {
   try {
@@ -26,9 +27,7 @@ const Library = async () => {
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {workouts.map((workout) => (
-          <div key={workout.id} className="p-4 border border-base-300 rounded-2xl bg-base-200">
-            <p className="font-heading">{workout.name} loaded...</p>
-          </div>
+          <WorkoutCard key={workout.id} workout={workout} />
         ))}
       </div>
     </section>
