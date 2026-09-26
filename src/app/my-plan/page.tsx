@@ -201,7 +201,7 @@ const MyPlan = () => {
                     className="btn btn-accent btn-sm rounded-xl text-black"
                     onClick={() => handleMarkDone(workout)}
                   >
-                    <CheckCircle className="h-4 w-4" /> Done
+                    <CheckCircle className="h-4 w-4" /> Mark as Done
                   </button>
                 )}
                 <button
