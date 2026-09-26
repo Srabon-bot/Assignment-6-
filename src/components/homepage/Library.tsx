@@ -1,5 +1,5 @@
 import { IWorkout } from "../../types/workout.type";
-import WorkoutCard from "../shared/WorkoutCard";
+import LibraryClient from "./LibraryClient";
 
 const fetchWorkouts = async (): Promise<IWorkout[]> => {
   try {
@@ -20,16 +20,12 @@ const Library = async () => {
   return (
     <section id="library" className="space-y-6">
       <div>
-        <h2 className="text-3xl">The Library</h2>
+        <h2 className="text-3xl font-heading font-bold uppercase">The Library</h2>
         <p className="mt-2 text-base-content/70">
           Twelve lifts covering every major muscle group.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {workouts.map((workout) => (
-          <WorkoutCard key={workout.id} workout={workout} />
-        ))}
-      </div>
+      <LibraryClient workouts={workouts} />
     </section>
   );
 };

@@ -60,7 +60,7 @@ const Navbar = () => {
 
         <div className="navbar-end gap-2">
           <Link href="/my-plan" className="btn btn-ghost btn-sm gap-2">
-            Plan <span className="badge badge-primary badge-sm">{plan.length}</span>
+            Plan <span className="badge badge-accent badge-sm">{plan.length}</span>
           </Link>
           <Link href="/my-plan" className="btn btn-ghost btn-sm gap-2">
             Saved <span className="badge badge-outline badge-sm">{saved.length}</span>
