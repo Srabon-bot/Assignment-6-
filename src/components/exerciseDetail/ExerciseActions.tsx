@@ -16,6 +16,7 @@ const ExerciseActions = ({ workout }: IExerciseActionsProps) => {
   const isInPlan = plan.some((item) => item.id === workout.id);
   const isSaved = saved.some((item) => item.id === workout.id);
   const isPlanFull = plan.length >= 5;
+  const isAddDisabled = isPlanFull && !isInPlan;
 
   const handleAddToPlan = () => {
     if (isInPlan) {
@@ -43,16 +44,18 @@ const ExerciseActions = ({ workout }: IExerciseActionsProps) => {
     <div className="mt-6 flex flex-col gap-3 sm:flex-row">
       <button
         onClick={handleAddToPlan}
-        disabled={isInPlan || isPlanFull}
-        className="btn btn-accent rounded-2xl text-black"
+        disabled={isAddDisabled}
+        aria-disabled={isAddDisabled}
+        className={`btn btn-accent rounded-2xl text-black ${
+          isInPlan ? "opacity-60" : ""
+        } ${isAddDisabled ? "opacity-40 cursor-not-allowed" : ""}`}
       >
         <CalendarPlus className="h-5 w-5" />
         {isInPlan ? "Already in Plan" : isPlanFull ? "Plan Full (5/5)" : "Add to today's plan"}
       </button>
       <button
         onClick={handleSave}
-        disabled={isSaved}
-        className="btn btn-outline rounded-2xl"
+        className={`btn btn-outline rounded-2xl ${isSaved ? "opacity-60" : ""}`}
       >
         <Bookmark className="h-5 w-5" />
         {isSaved ? "Already Saved" : "Save for later"}
