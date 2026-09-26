@@ -3,8 +3,8 @@
 import { useContext } from "react";
 import { CalendarPlus, Bookmark } from "lucide-react";
 import toast from "react-hot-toast";
-import { PlanContext } from "../../../context/PlanContext";
-import { IWorkout } from "../../../types/workout.type";
+import { PlanContext } from "../../context/PlanContext";
+import { IWorkout } from "../../types/workout.type";
 
 interface IExerciseActionsProps {
   workout: IWorkout;

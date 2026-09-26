@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { IWorkout } from "../../../types/workout.type";
-import ExerciseActions from "../../../components/exerciseDetail/ExerciseActions";
+import { IWorkout } from "@/types/workout.type";
+import ExerciseActions from "@/components/exerciseDetail/ExerciseActions";
 
 const fetchWorkout = async (id: string): Promise<IWorkout | null> => {
   try {
